@@ -2,13 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('dog-form')
     const tableBody = document.getElementById('table-body')
     
-    fetch('http://localhost:3000/dogs')
-    .then(response => response.json())
-    .then(dogs => {
-        dogs.forEach(dog => {
-            renderDog(dog)
+    const refreshDogList = () => {
+        tableBody.innerHTML = ''
+        fetch('http://localhost:3000/dogs')
+        .then(response => response.json())
+        .then(dogs => {
+            dogs.forEach(dog => {
+                renderDog(dog)
         });
     })
+    }
+    refreshDogList()
 
     const editDog = (dog) => {
         form.name.value = dog.name
@@ -59,17 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             refreshDogList()
         }, 500)
-    }
-
-    const refreshDogList = () => {
-        tableBody.innerHTML = ''
-        fetch('http://localhost:3000/dogs')
-        .then(response => response.json())
-        .then(dogs => {
-            dogs.forEach(dog => {
-                renderDog(dog)
-        });
-    })
     }
     form.addEventListener('submit', postDog)
 })
