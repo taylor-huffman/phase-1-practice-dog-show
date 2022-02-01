@@ -3,6 +3,10 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+button {
+  width: 100%;
+}
+
 .flex {
   display: flex;
   flex-direction: column;
